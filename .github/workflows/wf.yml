@@ -18,3 +18,8 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm test
+  job2:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - run: echo ${{needs.build.outputs}}
