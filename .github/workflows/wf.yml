@@ -16,8 +16,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: Install markdownlint
-      run: npm install -g markdownlint-cli
+    - name: Install NPM
+      run: npm ci
     - name: Run Test
       run: |
           echo "::set-output name=TAG_NAME::$(npm test)"
