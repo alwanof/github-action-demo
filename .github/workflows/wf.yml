@@ -19,6 +19,9 @@ jobs:
     - name: Install NPM
       run: npm ci
     - name: Run Test
+      id: run_md_lint
       run: |
-          echo "::set-output name=TAG_NAME::$(npm test)" >> $GITHUB_STEP_SUMMARY
+          echo "::set-output name=TAG_NAME::$(npm test)"
+    - name: Run a one-line script
+      run: echo "Resultes ${{ steps.run_md_lint.outputs.TAG_NAME }}"
  
