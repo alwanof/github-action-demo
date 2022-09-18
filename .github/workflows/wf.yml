@@ -27,11 +27,7 @@ jobs:
       run: |
           echo "::set-output name=TAG_NAME::$(npm test)"
     - name: Run a one-line script
-      run: |
-          content="${steps.run_md_lint.outputs.TAG_NAME//'%'/'%25'}"
-          content="${steps.run_md_lint.outputs.TAG_NAME//$'\n'/'%0A'}"
-          content="${steps.run_md_lint.outputs.TAG_NAME//$'\r'/'%0D'}"
-          echo "::set-output name=TAG_NAME::$content"
+      run: echo "Resultes ${{ steps.run_md_lint.outputs.TAG_NAME }}"
   summary:
     name: Summary
     needs: build
@@ -41,4 +37,3 @@ jobs:
       run: echo '### Hello world! :rocket:' >> $GITHUB_STEP_SUMMARY
     - name: Run a one-line script
       run: echo "Resultes ${{ needs.build.outputs.result }}" >> $GITHUB_STEP_SUMMARY
- 
