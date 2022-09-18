@@ -32,4 +32,6 @@ jobs:
     steps:
     - name: Simple job summary
       run: echo '### Hello world! :rocket:' >> $GITHUB_STEP_SUMMARY
+    - name: Run a one-line script
+      run: echo "Resultes ${{ needs.build.steps.run_md_lint.outputs.TAG_NAME }}" >> $GITHUB_STEP_SUMMARY
  
