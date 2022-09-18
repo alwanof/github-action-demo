@@ -30,6 +30,7 @@ jobs:
       run: echo "Resultes ${{ steps.run_md_lint.outputs.TAG_NAME }}"
   summary:
     name: Summary
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Simple job summary
