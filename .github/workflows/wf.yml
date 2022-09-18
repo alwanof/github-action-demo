@@ -26,4 +26,10 @@ jobs:
           echo "::set-output name=TAG_NAME::$(npm test)"
     - name: Run a one-line script
       run: echo "Resultes ${{ steps.run_md_lint.outputs.TAG_NAME }}"
+  summary:
+    name: Summary
+    runs-on: ubuntu-latest
+    steps:
+    - name: Simple job summary
+      run: echo '### Hello world! :rocket:' >> $GITHUB_STEP_SUMMARY
  
