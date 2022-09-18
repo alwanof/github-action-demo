@@ -27,6 +27,7 @@ jobs:
     - name: Run a one-line script
       run: echo "Resultes ${{ steps.run_md_lint.outputs.TAG_NAME }}"
   summary:
+    needs: build
     name: Summary
     runs-on: ubuntu-latest
     steps:
