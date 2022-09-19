@@ -6,7 +6,7 @@ jobs:
     name: Run Auto Test
     runs-on: windows-latest
     outputs:
-      result: ${{ steps.run_md_lint.outputs.TAG_NAME1 }}
+      result: ${{ steps.run_md_lint.outputs.TAG_NAME }}
     strategy:
       matrix:
         node-version: [14.x]
@@ -26,10 +26,10 @@ jobs:
       id: run_md_lint
       run: |
           echo "::set-output name=TAG_NAME::$(npm test)"
-          content="${TAG_NAME//'%'/'%25'}"
-          content="${TAG_NAME//$'\n'/'%0A'}"
-          content="${TAG_NAME//$'\r'/'%0D'}"
-          echo "::set-output name=TAG_NAME1::$content"
+          TAG_NAME="${TAG_NAME//'%'/'%25'}"
+          TAG_NAME="${TAG_NAME//$'\n'/'%0A'}"
+          TAG_NAME="${TAG_NAME//$'\r'/'%0D'}"
+          echo "::set-output name=TAG_NAME::$content"
   summary:
     name: Summary
     needs: build
