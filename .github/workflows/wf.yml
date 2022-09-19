@@ -6,7 +6,7 @@ jobs:
     name: Run Auto Test
     runs-on: windows-latest
     outputs:
-      result: ${{ steps.teto.outputs.test }}
+      result: ${{ steps.run_md_lint.outputs.TAG_NAME }}
     strategy:
       matrix:
         node-version: [14.x]
