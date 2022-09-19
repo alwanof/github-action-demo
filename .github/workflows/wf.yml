@@ -25,11 +25,8 @@ jobs:
     - name: Run Test
       id: run_md_lint
       run: |
-          echo "::set-output name=TAG_NAME::$(npm test)"
-          TAG_NAME="${TAG_NAME//'%'/'%25'}"
-          TAG_NAME="${TAG_NAME//$'\n'/'%0A'}"
-          TAG_NAME="${TAG_NAME//$'\r'/'%0D'}"
-          echo "::set-output name=TAG_NAME::$content"
+          content="${npm test//'%'/'%25'}"
+          echo "::set-output name=TAG_NAME::content"
   summary:
     name: Summary
     needs: build
