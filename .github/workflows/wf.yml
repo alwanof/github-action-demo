@@ -6,7 +6,7 @@ jobs:
     name: Run Auto Test
     runs-on: windows-latest
     outputs:
-      result: ${{ steps.sum.outputs.foshia }}
+      result: ${{ steps.run_md_lint.outputs.TAG_NAME1 }}
     strategy:
       matrix:
         node-version: [14.x]
@@ -26,13 +26,10 @@ jobs:
       id: run_md_lint
       run: |
           echo "::set-output name=TAG_NAME::$(npm test)"
-    - name: SUM Test
-      uses: actions/github-script@v5
-      id: sum
-      with:
-          script: |
-            core.setOutput("foshia", `${{ steps.run_md_lint.outputs.TAG_NAME }}`);
-
+          content="${TAG_NAME//'%'/'%25'}"
+          content="${TAG_NAME//$'\n'/'%0A'}"
+          content="${TAG_NAME//$'\r'/'%0D'}"
+          echo "::set-output name=TAG_NAME1::$content"
   summary:
     name: Summary
     needs: build
