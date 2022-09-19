@@ -25,8 +25,7 @@ jobs:
     - name: Run Test
       id: run_md_lint
       run: |
-          content="${npm test//'%'/'%25'}"
-          echo "::set-output name=TAG_NAME::content"
+          echo "::set-output name=TAG_NAME::$(npm test)"
   summary:
     name: Summary
     needs: build
@@ -35,4 +34,6 @@ jobs:
     - name: Simple job summary
       run: echo '### Hello world! :rocket:' >> $GITHUB_STEP_SUMMARY
     - name: Run a one-line script
-      run: echo "Resultes ${{needs.build.outputs.result}}" >> $GITHUB_STEP_SUMMARY
+      run: |
+          content="${needs.build.outputs.result//'%'/'%25'}"
+          echo "$content" >> $GITHUB_STEP_SUMMARY
